@@ -5,106 +5,137 @@
 
 	if (window.nano === undefined) window.nano = { debug: false }
 
-	window.nano.rpc = {
+	var rpc = {
 
 	    endpoint: 'https://rpc.nano.to',
 
 		post(endpoint, data) {
-		return new Promise((resolve) => {
-		    var xhr = new XMLHttpRequest();
-		    xhr.open("POST", endpoint, true);
-		    xhr.setRequestHeader('Content-Type', 'application/json');
-		    xhr.send(JSON.stringify(data));
-		    xhr.onload = function() {
-		      resolve(JSON.parse(this.responseText))
-		    }
-		})
-		},
-
-		pending(address, count) {
-		 return new Promise((resolve) => {
-		  count = count && Number(count) > 100 ? 100 : (count || 100)
-		  this.post(this.endpoint, { 
-		    action: 'pending', 
-		    account: address,
-		    count: count,
-		    json_block: true,
-		    source: true,
-		  }).then((res) => {
-		  	console.log( )
-		    var blocks = []
-		    if (res.blocks !== "") {
-		        Object.keys(res.blocks).map(hash => {
-		            blocks.push({ 
-		                hash, 
-		                account: res.blocks[hash].source, 
-		                amount_raw: res.blocks[hash].amount,
-		                amount: NanocurrencyWeb.tools.convert(res.blocks[hash].amount, 'RAW', 'NANO'),
-		            })
-		        })
-		    }
-		    resolve(blocks)
-		  })
-		})
-		},
-
-		history(address, count) {
-		return new Promise((resolve) => {
-		  this.post(this.endpoint, { 
-		    action: 'account_history', 
-		    account: address,
-		    count: Number(count) ? Number(count) : 100,
-		    raw: true
-		  }).then((res) => {
-		    if (!Array.isArray(res.history)) return []
-		    resolve(res.history.map(a => {
-		        a.amount_raw = a.amount
-		        a.amount = NanocurrencyWeb.tools.convert(a.amount, 'RAW', 'NANO')
-		        return a
-		    }))
-		  })
-		})
-		},
-
-		block(amount, dataset) {
-				var block = dataset.find(a => a.amount_raw === NanocurrencyWeb.tools.convert(amount, 'NANO', 'RAW') )
-		    return block ? block : false
-		},
-
-		check(address, amount) {
-		try {
-		  return this.pending(address).then(async (pending) => {
-		    var success = false
-		    var block = false
-		    if (Array.isArray(pending)) block = this.block(amount, pending)
-		    if (!block) {
-		        var _history = await this.history(address, 10) // @todo make configurable
-		        if (Array.isArray(_history)) block = this.block(amount, _history)
-		    }
-		    return block
-		  })
-		} catch(e) {
-		  report(e.message ? e.message : 'Error Occured')
-		}
-
+			return new Promise((resolve) => {
+			    var xhr = new XMLHttpRequest();
+			    xhr.open("POST", endpoint, true);
+			    xhr.setRequestHeader('Content-Type', 'application/json');
+			    xhr.setRequestHeader('Nano-App', 'fwd/nano-goal');
+			    xhr.send(JSON.stringify(data));
+			    xhr.onload = function() {
+			      resolve(JSON.parse(this.responseText))
+			    }
+			})
 		},
 
 	}
 
     window.nano.goal = (config) => {
 
-        var template = ``
-	    
-	    document.body.innerHTML += template;
-	    
-	    window.nano.interval = setInterval(async () => {
-	    	if (window.nano.debug) return
-	    	if (checks < 60) {
-		    	var block = await window.nano.rpc.check(data.address, data.common)
-		    	if (block) window.nano.success(null, null, block)
-	    	} else clearInterval(window.nano.interval)
-	    }, 5000)
+		var css = `
+#funding-wrap {
+	zoom: 0.8;
+	border-radius: 20px;
+	padding: 20px;
+	box-sizing: content-box;
+	border: 8px solid;
+	font-family: inherit;
+}
+.flex-item {
+    display: flex;
+    width: 100%;
+    font-size: 33px;
+    justify-content: space-between;
+}
+#glass {
+    width: 100%;
+    height: 20px;
+    background: #c7c7c7;
+    border-radius: 10px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    margin: 10px 0;
+}
+#contribution {
+    float: left;
+    height: 20px;
+    z-index: 333;
+    position: absolute;
+    opacity: .5;
+}
+#progress {
+    float: left;
+    height: 20px;
+    z-index: 333;
+}
+.goal-stat {
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+}
+.goal-number {
+    font-weight: 700;
+}		
+`
+		var head = document.head || document.getElementsByTagName('head')[0]
+		var style = document.createElement('style')
 
+		head.appendChild(style);
+
+		style.type = 'text/css';
+		if (style.styleSheet){
+		  // This is required for IE8 and below.
+		  style.styleSheet.cssText = css;
+		} else {
+		  style.appendChild(document.createTextNode(css));
+		}
+
+    	if (config.element) {
+	        
+	        var all = document.querySelectorAll(config.element);
+
+			rpc.post(config.endpoint ? config.endpoint : rpc.endpoint, { 
+				action: 'account_info', 
+				account: config.address,
+			}).then((balance) => {
+				var percent = (100 * balance.balance_nano) / Number(config.amount) > 100 ? '100%' : (100 * balance.balance_nano) / Number(config.amount)
+					percent = Math.floor(percent)
+		        for (var i=0, max=all.length; i < max; i++) {
+			        var template = `<div id="goal-meter">
+	    <div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
+	        <div class="flex-item">
+	            <div class="goal-stat">${config.title || 'Funding Goal'}</div>
+	            <div class="goal-stat">
+	                <span style="font-size: 80%">Ӿ</span> ${config.amount}
+	            </div>
+	        </div>
+	        <div id="glass">
+	            <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
+	            </div>
+	            <div id="progress" style="width: 0%;">
+	            </div>
+	        </div>
+	        <div class="flex-item">
+	            <div class="goal-stat">
+	                <span class="goal-number">
+	                    ${percent}%
+	                    <b>Funded</b>
+	                </span>
+	            </div>
+	            <div class="goal-stat">
+	                <span class="goal-number">
+	                    <span style="font-size: 80%">Ӿ</span> ${ Number(balance.balance_nano).toFixed(2) }
+	                    <b>Raised</b>
+	                </span>
+	            </div>
+	        </div>
+	    </div>
+	</div>`
+		            all[i].innerHTML = template
+		            // all[i].style.position = null; 
+		        }
+			})
+
+
+        }
+	    
+	    // document.body.innerHTML += template;
+	    
     }
 
 })();

@@ -442,8 +442,11 @@
         <header>
                 <h1 class="smaller">NanoGoal.js</h1>
         </header>
-        <article class="premium">
+        <article>
             <h2 id="one">You Gotta Love Birds</h2>
+            <div class="goal"></div>
+            <br>
+            <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet
                 ut quam sit amet vehicula. Donec sit amet facilisis quam. Integer mollis,
                 urna accumsan tempor hendrerit, risus neque tincidunt neque, in aliquam
@@ -499,6 +502,9 @@
                 feels them give way beneath her, and yet sings, knowing she hath wings."
                 <br><span>&mdash; Victor Hugo</span>
                 </blockquote>
+                <div class="goal"></div>
+            <br>
+            <br>
                 <p class="premium">Donec eu eros augue. Fusce blandit sed lacus ut pretium. Vivamus lacus
                     ligula, fringilla sit amet nibh non, bibendum auctor nisi. In quis mollis
                     mauris. Aliquam eget arcu ut arcu rhoncus posuere nec sit amet mauris.
@@ -638,6 +644,9 @@
                                     consectetur. Nulla eu lorem dignissim nulla interdum consequat. Donec non
                                     maximus tellus. Aliquam erat volutpat. Nulla porttitor odio in turpis convallis,
                                     ac rhoncus tellus pellentesque.</p>
+                                    <div class="goal2"></div>
+            <br>
+            <br>
                                 <p class="premium">In hac habitasse platea dictumst. Aenean sit amet libero lorem. Quisque
                                     in sagittis nisl, placerat auctor tellus. Suspendisse scelerisque eget
                                     tortor eu porta. Nulla sollicitudin justo et ipsum placerat efficitur vel
@@ -669,23 +678,24 @@
         <script src="/latest.js"></script>
 
         <script>
-            nano.paywall({ 
-                element: '.premium', // required, all with class .premium
+
+            nano.goal({ 
+                element: '.goal', // required, all with class .premium
                 address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
-                amount: 0.001, // required
-                debug: false, // optional
-                free: false, // // optional, allow free access
-                background: '#000000f2', // optional css hex
-                button: 'Unlock', // optional css hex
-                text: 'Read Lorem for', // optional
-                title: '', // optional
-                color: '', // optional
-                // endpoint: 'https://nanolooker.com/api/rpc', // optional
-                success: (block) => {
-                    // Element(s) are automatically shown.
-                    console.log(block)
-                }
+                amount: 100, // required
+                title: 'Bird Sanctuary Fund', // optional
+                color: '#10b610'
             })
+
+            nano.goal({ 
+                element: '.goal2', // required, all with class .premium
+                address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
+                amount: 10, // required
+                title: 'Personal Fund', // optional
+                color: 'red',
+                // endpoint: 'https://nanolooker.com/rpc' // optional
+            })
+
         </script>
     </body>
 

@@ -4,7 +4,6 @@
 
 <h3 align="center">Non-custodial Browser Plugin.</h3>
 
-
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ### Live Demo
