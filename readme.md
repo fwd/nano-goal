@@ -26,12 +26,7 @@
 <script src="https://goal.nano.to/latest.js"></script>
 ```
 
-![line](https://github.com/fwd/n2/raw/master/.github/line.png)
-
-### Goal Meter
-
-Monetize any existing website with Nano currency.
-
+**USAGE:**
 ```html
 <script>
     nano.goal({ 
