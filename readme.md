@@ -30,7 +30,7 @@
 ```html
 <script>
     nano.goal({ 
-        element: '.goal', // required, all with class .premium
+        element: '.goal', // required, all elem with class .goal
         address: 'YOUR_ADDRESS', // required
         amount: 100, // required
         title: 'Bird Sanctuary', // optional
