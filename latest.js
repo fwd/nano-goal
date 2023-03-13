@@ -26,52 +26,7 @@
 
     window.nano.goal = (config) => {
 
-		var css = `
-#funding-wrap {
-	zoom: 0.8;
-	border-radius: 20px;
-	padding: 20px;
-	box-sizing: content-box;
-	border: 8px solid;
-	font-family: inherit;
-}
-.flex-item {
-    display: flex;
-    width: 100%;
-    font-size: 33px;
-    justify-content: space-between;
-}
-#glass {
-    width: 100%;
-    height: 20px;
-    background: #c7c7c7;
-    border-radius: 10px;
-    float: left;
-    overflow: hidden;
-    position: relative;
-    margin: 10px 0;
-}
-#contribution {
-    float: left;
-    height: 20px;
-    z-index: 333;
-    position: absolute;
-    opacity: .5;
-}
-#progress {
-    float: left;
-    height: 20px;
-    z-index: 333;
-}
-.goal-stat {
-    padding: 10px;
-    margin: 0;
-    text-align: center;
-}
-.goal-number {
-    font-weight: 700;
-}		
-`
+		var css = `#funding-wrap { zoom: 0.8; border-radius: 20px; padding: 20px; box-sizing: content-box; border: 8px solid; font-family: inherit; } .flex-item { display: flex; width: 100%; font-size: 33px; justify-content: space-between; } #glass { width: 100%; height: 20px; background: #c7c7c7; border-radius: 10px; float: left; overflow: hidden; position: relative; margin: 10px 0; } #contribution { float: left; height: 20px; z-index: 333; position: absolute; opacity: .5; } #progress { float: left; height: 20px; z-index: 333; } .goal-stat { padding: 10px; margin: 0; text-align: center; } .goal-number { font-weight: 700; }`
 		var head = document.head || document.getElementsByTagName('head')[0]
 		var style = document.createElement('style')
 
@@ -97,45 +52,41 @@
 					percent = Math.floor(percent)
 		        for (var i=0, max=all.length; i < max; i++) {
 			        var template = `<div id="goal-meter">
-	    <div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
-	        <div class="flex-item">
-	            <div class="goal-stat">${config.title || 'Funding Goal'}</div>
-	            <div class="goal-stat">
-	                <span style="font-size: 80%">Ӿ</span> ${config.amount}
-	            </div>
-	        </div>
-	        <div id="glass">
-	            <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
-	            </div>
-	            <div id="progress" style="width: 0%;">
-	            </div>
-	        </div>
-	        <div class="flex-item">
-	            <div class="goal-stat">
-	                <span class="goal-number">
-	                    ${percent}%
-	                    <b>Funded</b>
-	                </span>
-	            </div>
-	            <div class="goal-stat">
-	                <span class="goal-number">
-	                    <span style="font-size: 80%">Ӿ</span> ${ Number(balance.balance_nano).toFixed(2) }
-	                    <b>Raised</b>
-	                </span>
-	            </div>
+	<div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
+	    <div class="flex-item">
+	        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
+	        <div class="goal-stat">
+	            <span style="font-size: 80%">Ӿ</span> ${config.amount}
 	        </div>
 	    </div>
-	</div>`
+	    <div id="glass">
+	        <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
+	        </div>
+	        <div id="progress" style="width: 0%;">
+	        </div>
+	    </div>
+	    <div class="flex-item">
+	        <div class="goal-stat">
+	            <span class="goal-number">
+	                ${percent}%
+	                <b>${{ config.strings && config.strings.funded ? config.strings.funded : 'Funded' }}</b>
+	            </span>
+	        </div>
+	        <div class="goal-stat">
+	            <span class="goal-number">
+	                <span style="font-size: 80%">Ӿ</span> ${ Number(balance.balance_nano).toFixed(2) }
+	                <b>Raised</b>
+	            </span>
+	        </div>
+	    </div>
+	</div>
+</div>`
 		            all[i].innerHTML = template
-		            // all[i].style.position = null; 
 		        }
 			})
 
-
         }
-	    
-	    // document.body.innerHTML += template;
-	    
+	      
     }
 
 })();
