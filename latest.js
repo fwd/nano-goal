@@ -52,6 +52,7 @@
 					percent = Math.floor(percent)
 		        for (var i=0, max=all.length; i < max; i++) {
 			        var template = `<div id="goal-meter">
+    <a style="text-decoration: none; color: inherit" href="https://nano.to/${config.address}?title=${config.title}" target="_blank">
 	<div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
 	    <div class="flex-item">
 	        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
@@ -69,7 +70,7 @@
 	        <div class="goal-stat">
 	            <span class="goal-number">
 	                ${percent}%
-	                <b>${{ config.strings && config.strings.funded ? config.strings.funded : 'Funded' }}</b>
+	                <b>${config.strings && config.strings.funded ? config.strings.funded : 'Funded'}</b>
 	            </span>
 	        </div>
 	        <div class="goal-stat">
@@ -80,6 +81,7 @@
 	        </div>
 	    </div>
 	</div>
+	</a>
 </div>`
 		            all[i].innerHTML = template
 		        }
