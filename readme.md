@@ -30,9 +30,13 @@
 ```html
 <script>
     nano.goal({ 
-        element: '.goal', // required, all with class .goal
+        element: '.goal', // required, all with class .premium
         address: 'YOUR_ADDRESS', // required
-        amount: 1000, // required
+        amount: 100, // required
+        title: 'Bird Sanctuary', // optional
+        // color: 'blue', // optional
+        // href: 'https://google.com' // optional
+        // endpoint: 'https://rpc.nano.to' // optional
     })
 </script>
 ```
