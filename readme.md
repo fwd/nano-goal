@@ -30,9 +30,7 @@
 
 ### Goal Meter
 
-Monetize any DOM element on your website.
-
-> **This library is not for keeping secrets. It is to make it easier for users to support you. Anyone can bypass this kind of  paywall with some tinkering.**
+Monetize any existing website with Nano currency.
 
 ```html
 <script>
