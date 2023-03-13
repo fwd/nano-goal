@@ -2,16 +2,8 @@
 
 <h1 align="center">NanoGoal.js</h1>
 
-<h3 align="center">Non-custodial Nano Balance Meter Browser Plugin.</h3>
+<h3 align="center">Non-custodial Balance **Browser** Plugin.</h3>
 
-![line](https://github.com/fwd/n2/raw/master/.github/line.png)
-
-![line](https://github.com/fwd/nano-goal/raw/master/img/wall.png)
-
-![line](https://github.com/fwd/n2/raw/master/.github/line.png)
-![line](https://github.com/fwd/nano-goal/raw/master/img/splash2.png)
-![line](https://github.com/fwd/n2/raw/master/.github/line.png)
-![line](https://github.com/fwd/nano-goal/raw/master/img/splash3.png)
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
@@ -30,7 +22,7 @@
 
 **CDN:**
 ```html
-<script src="https://wall.nano.to/latest.js"></script>
+<script src="https://goal.nano.to/latest.js"></script>
 ```
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
