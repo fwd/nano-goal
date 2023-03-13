@@ -6,6 +6,8 @@
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
+![line](https://github.com/fwd/nano-goal/raw/master/.github/banner.png)
+
 ### Live Demo
 
 <a target="_blank" href="https://blog.nano.to">https://goal.nano.to</a>
