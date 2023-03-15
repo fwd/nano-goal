@@ -70,7 +70,7 @@
 		        	} else {
 
 				        var template = `<div id="goal-meter">
-	    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?title=' +  config.title) }" target="_blank">
+	    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + ':' + config.title) }" target="_blank">
 		<div id="funding-wrap" style="font-size: ${config.font ? config.font + 'px' : '18px'}; border-color: ${config.color || '#089dff'}; padding: ${config.radius || config.radius === 0 ? '0 5px' : '20px'}; border-radius: ${config.radius || config.radius === 0 ? config.radius + 'px' : '10px'}; border-width: ${config.radius || config.radius === 0 ? '0px' : '8px'};">
 		    <div class="flex-item">
 		        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
