@@ -63,12 +63,14 @@
 </div></a>`
 
 		        	} else if (config.theme === 'custom') {
+		        	
 		        		var template = config.custom
 			        		.replace('{{ amount }}', config.amount).replace('{{amount}}', config.amount)
 			        		.replace('{{ color }}', config.color).replace('{{color}}', config.color)
 			        		.replace('{{ percent }}', percent).replace('{{percent}}', percent)
 			        		.replace('{{ balance }}', Number(balance.balance_nano).toFixed(2)).replace('{{balance}}', Number(balance.balance_nano).toFixed(2))
 			        		.replace('{{ funded }}', Number(balance.balance_nano).toFixed(2)).replace('{{funded}}', Number(balance.balance_nano).toFixed(2))
+			        		
 		        	} else {
 
 				        var template = `<div id="goal-meter">
