@@ -51,39 +51,56 @@
 				var percent = (100 * balance.balance_nano) / Number(config.amount) > 100 ? '100%' : (100 * balance.balance_nano) / Number(config.amount)
 					percent = Math.floor(percent)
 		        for (var i=0, max=all.length; i < max; i++) {
-			        var template = `<div id="goal-meter">
-    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?title=' +  config.title) }" target="_blank">
-	<div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
-	    <div class="flex-item">
-	        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
-	        <div class="goal-stat">
-	            <span style="font-size: 80%">Ӿ</span> ${config.amount}
-	        </div>
-	    </div>
-	    <div id="glass">
-	        <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
-	        </div>
-	        <div id="progress" style="width: 0%;">
-	        </div>
-	    </div>
-	    <div class="flex-item">
-	        <div class="goal-stat">
-	            <span class="goal-number">
-	                ${percent}%
-	                <b>${config.strings && config.strings.funded ? config.strings.funded : 'Funded'}</b>
-	            </span>
-	        </div>
-	        <div class="goal-stat">
-	            <span class="goal-number">
-	                <span style="font-size: 80%">Ӿ</span> ${ Number(balance.balance_nano).toFixed(2) }
-	                <b>Raised</b>
-	            </span>
-	        </div>
-	    </div>
-	</div>
-	</a>
+
+		        	if (config.theme === 'bar-only') {
+				        var template = `<div id="glass">
+    <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
+    </div>
+    <div id="progress" style="width: 0%;">
+    </div>
 </div>`
+
+		        	} else {
+
+				        var template = `<div id="goal-meter">
+	    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?title=' +  config.title) }" target="_blank">
+		<div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
+		    <div class="flex-item">
+		        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
+		        <div class="goal-stat">
+		            <span style="font-size: 80%">Ӿ</span> ${config.amount}
+		        </div>
+		    </div>
+		    <div id="glass">
+		        <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
+		        </div>
+		        <div id="progress" style="width: 0%;">
+		        </div>
+		    </div>
+		    <div class="flex-item">
+		        <div class="goal-stat">
+		            <span class="goal-number">
+		                ${percent}%
+		                <b>${config.strings && config.strings.funded ? config.strings.funded : 'Funded'}</b>
+		            </span>
+		        </div>
+		        <div class="goal-stat">
+		            <span class="goal-number">
+		                <span style="font-size: 80%">Ӿ</span> ${ Number(balance.balance_nano).toFixed(2) }
+		                <b>Raised</b>
+		            </span>
+		        </div>
+		    </div>
+		</div>
+		</a>
+	</div>`
+
+		        	}
+
+
 		            all[i].innerHTML = template
+
+
 		        }
 			})
 
