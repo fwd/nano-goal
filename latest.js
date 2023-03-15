@@ -26,7 +26,7 @@
 
     window.nano.goal = (config) => {
 
-		var css = `#funding-wrap { zoom: 0.8; border-radius: 20px; padding: 20px; box-sizing: content-box; border: 8px solid; font-family: inherit; } .flex-item { display: flex; width: 100%; font-size: 33px; justify-content: space-between; } #glass { width: 100%; height: 20px; background: #c7c7c7; border-radius: 10px; float: left; overflow: hidden; position: relative; margin: 10px 0; } #contribution { float: left; height: 20px; z-index: 333; position: absolute; opacity: .5; } #progress { float: left; height: 20px; z-index: 333; } .goal-stat { padding: 10px; margin: 0; text-align: center; } .goal-number { font-weight: 700; }`
+		var css = `#funding-wrap { border-radius: 20px; padding: 20px; box-sizing: content-box; border: 8px solid; font-family: inherit; } .flex-item { display: flex; width: 100%;; justify-content: space-between; } #glass { width: 100%; height: 20px; background: #c7c7c7; border-radius: 10px; float: left; overflow: hidden; position: relative; margin: 10px 0; } #contribution { float: left; height: 20px; z-index: 333; position: absolute; opacity: .5; } #progress { float: left; height: 20px; z-index: 333; } .goal-stat { padding: 10px; margin: 0; text-align: center; } .goal-number { font-weight: 700; }`
 		var head = document.head || document.getElementsByTagName('head')[0]
 		var style = document.createElement('style')
 
@@ -60,6 +60,13 @@
     </div>
 </div>`
 
+		        	} else if (config.theme === 'custom') {
+		        		var template = config.custom
+			        		.replace('{{ amount }}', config.amount).replace('{{amount}}', config.amount)
+			        		.replace('{{ color }}', config.color).replace('{{color}}', config.color)
+			        		.replace('{{ percent }}', percent).replace('{{percent}}', percent)
+			        		.replace('{{ balance }}', Number(balance.balance_nano).toFixed(2)).replace('{{balance}}', Number(balance.balance_nano).toFixed(2))
+			        		.replace('{{ funded }}', Number(balance.balance_nano).toFixed(2)).replace('{{funded}}', Number(balance.balance_nano).toFixed(2))
 		        	} else {
 
 				        var template = `<div id="goal-meter">
