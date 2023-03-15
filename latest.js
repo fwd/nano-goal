@@ -53,12 +53,14 @@
 		        for (var i=0, max=all.length; i < max; i++) {
 
 		        	if (config.theme === 'bar-only') {
-				        var template = `<div id="glass">
+				        var template = `
+<a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + ':' + config.title) }" target="_blank">
+<div id="glass">
     <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
     </div>
     <div id="progress" style="width: 0%;">
     </div>
-</div>`
+</div></a>`
 
 		        	} else if (config.theme === 'custom') {
 		        		var template = config.custom
