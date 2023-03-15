@@ -72,7 +72,6 @@ Special strings accepted in ```custom```:
 - {{ color }}
 - {{ percent }}
 - {{ balance }}
-- {{ funded }}
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
