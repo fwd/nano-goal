@@ -41,6 +41,39 @@
 </script>
 ```
 
+**BAR-UI:**
+```html
+<script>
+nano.goal({ 
+    element: '.goal', // required, all with class .premium
+    theme: 'bar-only',
+    address: 'YOUR_ADDRESS', // required
+    amount: 100, // required
+})
+</script>
+```
+
+**CUSTOM:**
+```html
+<script>
+nano.goal({ 
+    element: '.goal', // required, all with class .premium
+    theme: 'custom',
+    custom: `<h2>Balance: {{balance}} NANO</h2>`,
+    address: 'YOUR_ADDRESS', // required
+    amount: 100, // required
+})
+</script>
+```
+
+Special strings accepted in ```custom```:
+
+- {{ amount }}
+- {{ color }}
+- {{ percent }}
+- {{ balance }}
+- {{ funded }}
+
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
 ### License
