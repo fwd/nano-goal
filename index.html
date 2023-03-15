@@ -600,6 +600,10 @@
                             Pellentesque tempus ut ante non ullamcorper. Vivamus neque tellus, varius
                             quis mi eu, fermentum laoreet orci. Quisque nisi elit, fringilla in ligula
                             ut, molestie ultricies massa. Curabitur nec suscipit metus.</p>
+
+                             <div class="goal2"></div>
+            <br>
+            <br>
                         <p>Etiam ac pretium erat. Nullam mollis, enim sed pretium pellentesque, urna
                             dolor faucibus nisi, interdum luctus neque eros blandit justo. Morbi non
                             urna scelerisque, condimentum ex nec, bibendum sem. Pellentesque ullamcorper
@@ -644,7 +648,7 @@
                                     consectetur. Nulla eu lorem dignissim nulla interdum consequat. Donec non
                                     maximus tellus. Aliquam erat volutpat. Nulla porttitor odio in turpis convallis,
                                     ac rhoncus tellus pellentesque.</p>
-                                    <div class="goal2"></div>
+                                    <div class="goal3"></div>
             <br>
             <br>
                                 <p class="premium">In hac habitasse platea dictumst. Aenean sit amet libero lorem. Quisque
@@ -680,8 +684,6 @@
         <script>
 
             nano.goal({ 
-                theme: 'custom',
-                custom: `<h2>Balance: {{balance}} NANO</h2>`,
                 element: '.goal', // required, all with class .premium
                 address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
                 amount: 100, // required
@@ -691,11 +693,24 @@
             })
 
             nano.goal({ 
+                theme: 'custom',
+                custom: `<h2>Balance: {{balance}} NANO</h2>`,
                 element: '.goal2', // required, all with class .premium
                 address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
-                amount: 10, // required
+                amount: 100, // required
+                title: 'Bird Sanctuary', // optional
+                // color: 'blue', // optional
+                // href: 'https://google.com' // optional
+            })
+
+            nano.goal({ 
+                element: '.goal3', // required, all with class .premium
+                address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
+                amount: 2, // required
                 title: 'Personal Fund', // optional
                 color: 'red',
+                // radius: 0,
+                font: 24,
                 // endpoint: 'https://nanolooker.com/rpc' // optional
             })
 

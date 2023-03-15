@@ -26,7 +26,7 @@
 
     window.nano.goal = (config) => {
 
-		var css = `#funding-wrap { border-radius: 20px; padding: 20px; box-sizing: content-box; border: 8px solid; font-family: inherit; } .flex-item { display: flex; width: 100%;; justify-content: space-between; } #glass { width: 100%; height: 20px; background: #c7c7c7; border-radius: 10px; float: left; overflow: hidden; position: relative; margin: 10px 0; } #contribution { float: left; height: 20px; z-index: 333; position: absolute; opacity: .5; } #progress { float: left; height: 20px; z-index: 333; } .goal-stat { padding: 10px; margin: 0; text-align: center; } .goal-number { font-weight: 700; }`
+		var css = `#funding-wrap { padding: 20px; box-sizing: content-box; border: 8px solid; font-family: inherit; } .flex-item { display: flex; width: 100%;; justify-content: space-between; } #glass { width: 100%; height: 20px; background: #c7c7c7; border-radius: 10px; float: left; overflow: hidden; position: relative; margin: 10px 0; } #contribution { float: left; height: 20px; z-index: 333; position: absolute; opacity: .5; } #progress { float: left; height: 20px; z-index: 333; } .goal-stat { padding: 10px; margin: 0; text-align: center; } .goal-number { font-weight: 700; }`
 		var head = document.head || document.getElementsByTagName('head')[0]
 		var style = document.createElement('style')
 
@@ -48,7 +48,7 @@
 				action: 'account_info', 
 				account: config.address,
 			}).then((balance) => {
-				var percent = (100 * balance.balance_nano) / Number(config.amount) > 100 ? '100%' : (100 * balance.balance_nano) / Number(config.amount)
+				var percent = (100 * balance.balance_nano) / Number(config.amount) > 100 ? 100 : (100 * balance.balance_nano) / Number(config.amount)
 					percent = Math.floor(percent)
 		        for (var i=0, max=all.length; i < max; i++) {
 
@@ -71,7 +71,7 @@
 
 				        var template = `<div id="goal-meter">
 	    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?title=' +  config.title) }" target="_blank">
-		<div id="funding-wrap" style="border-color: ${config.color || '#089dff'}">
+		<div id="funding-wrap" style="font-size: ${config.font ? config.font + 'px' : '18px'}; border-color: ${config.color || '#089dff'}; padding: ${config.radius || config.radius === 0 ? '0 5px' : '20px'}; border-radius: ${config.radius || config.radius === 0 ? config.radius + 'px' : '10px'}; border-width: ${config.radius || config.radius === 0 ? '0px' : '8px'};">
 		    <div class="flex-item">
 		        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
 		        <div class="goal-stat">
