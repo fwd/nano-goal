@@ -37,6 +37,9 @@
         // color: 'blue', // optional
         // href: 'https://google.com' // optional
         // endpoint: 'https://rpc.nano.to' // optional
+        // color: 'red',
+        // radius: 0,
+        // font: 24,
     })
 </script>
 ```
