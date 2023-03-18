@@ -40,19 +40,53 @@
 		  style.appendChild(document.createTextNode(css));
 		}
 
-    	if (config.element) {
+		var elements = config.element || config.elements
+
+    	if (elements) {
 	        
-	        var all = document.querySelectorAll(config.element);
+	        var all = document.querySelectorAll(elements);
+
+        	var bulk = []
+
+			for (let i = 0; i < all.length; i++) {
+				// var el = 
+	        	var temp = {}
+				if (all[i].getAttribute('data-address')) {
+					temp.address = (all[i].getAttribute('data-address') || all[i].getAttribute('data-username')) 
+				} else {
+					temp.address = config.address
+				}
+				if (!temp.address) return alert('Error: No address configured.')
+				if (all[i].getAttribute('data-amount')) temp.amount = (all[i].getAttribute('data-amount') || all[i].getAttribute('data-goal')) 
+				if (all[i].getAttribute('data-title')) temp.title = all[i].getAttribute('data-title') 
+				if (all[i].getAttribute('data-theme')) temp.theme = all[i].getAttribute('data-type') 
+				if (all[i].getAttribute('data-color')) temp.color = all[i].getAttribute('data-color') 
+				temp.el = all[i]
+				bulk.push(temp)
+			}
 
 			rpc.post(config.endpoint ? config.endpoint : rpc.endpoint, { 
-				action: 'account_info', 
-				account: config.address,
+				action: 'accounts_balances', 
+				accounts: bulk.map(a => a.address),
 			}).then((balance) => {
-				var percent = (100 * balance.balance_nano) / Number(config.amount) > 100 ? 100 : (100 * balance.balance_nano) / Number(config.amount)
-					percent = Math.floor(percent)
-		        for (var i=0, max=all.length; i < max; i++) {
 
-		        	if (config.theme === 'bar-only') {
+				if (balance.error) return console.error(balance)
+
+		        for (var el of bulk) {
+
+		        	if (el.amount) config.amount = el.amount
+		        	if (el.title) config.title = el.title
+		        	if (el.color) config.color = el.color
+		        	if (el.theme) config.theme = el.theme
+
+		        	// Oy vey
+		        	var _balance = balance.balances[el.address]
+
+					var percent = (100 * Number(_balance.balance_nano)) / Number(config.amount) > 100 ? 100 : (100 * Number(_balance.balance_nano)) / Number(config.amount)
+						percent = Math.floor(percent)
+
+
+		        	if (config.theme === 'bar' || config.theme === 'bar-only') {
 				        var template = `
 <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + ':' + config.title) }" target="_blank">
 <div id="glass">
@@ -68,8 +102,8 @@
 			        		.replace('{{ amount }}', config.amount).replace('{{amount}}', config.amount)
 			        		.replace('{{ color }}', config.color).replace('{{color}}', config.color)
 			        		.replace('{{ percent }}', percent).replace('{{percent}}', percent)
-			        		.replace('{{ balance }}', Number(balance.balance_nano).toFixed(2)).replace('{{balance}}', Number(balance.balance_nano).toFixed(2))
-			        		.replace('{{ funded }}', Number(balance.balance_nano).toFixed(2)).replace('{{funded}}', Number(balance.balance_nano).toFixed(2))
+			        		.replace('{{ balance }}', Number(_balance.balance_nano).toFixed(2)).replace('{{balance}}', Number(_balance.balance_nano).toFixed(2))
+			        		.replace('{{ funded }}', Number(_balance.balance_nano).toFixed(2)).replace('{{funded}}', Number(_balance.balance_nano).toFixed(2))
 			        		
 		        	} else {
 
@@ -97,19 +131,16 @@
 		        </div>
 		        <div class="goal-stat">
 		            <span class="goal-number">
-		                <span style="font-size: 80%">Ӿ</span> ${ Number(balance.balance_nano).toFixed(2) }
+		                <span style="font-size: 80%">Ӿ</span> ${ Number(_balance.balance_nano).toFixed(2) }
 		                <b>Raised</b>
 		            </span>
 		        </div>
 		    </div>
 		</div>
 		</a>
-	</div>`
+	</div>`}
 
-		        	}
-
-
-		            all[i].innerHTML = template
+	            	el.el.innerHTML = template
 
 
 		        }

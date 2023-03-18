@@ -444,7 +444,7 @@
         </header>
         <article>
             <h2 id="one">You Gotta Love Birds</h2>
-            <div class="goal"></div>
+            <div class="goal" data-address="@bank"></div>
             <br>
             <br>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus imperdiet
@@ -502,7 +502,7 @@
                 feels them give way beneath her, and yet sings, knowing she hath wings."
                 <br><span>&mdash; Victor Hugo</span>
                 </blockquote>
-                <div class="goal"></div>
+                <div class="goal" data-title="Bird Sanctuary 2" data-color="#e74c3c" data-type="bar" data-address="@faucet" data-amount="100"></div>
             <br>
             <br>
                 <p class="premium">Donec eu eros augue. Fusce blandit sed lacus ut pretium. Vivamus lacus
@@ -685,34 +685,41 @@
 
             nano.goal({ 
                 element: '.goal', // required, all with class .premium
-                address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
-                amount: 100, // required
-                title: 'Bird Sanctuary', // optional
-                // color: 'blue', // optional
-                // href: 'https://google.com' // optional
             })
 
-            nano.goal({ 
-                theme: 'custom',
-                custom: `<h2>Balance: {{balance}} NANO</h2>`,
-                element: '.goal2', // required, all with class .premium
-                address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
-                amount: 100, // required
-                title: 'Bird Sanctuary', // optional
-                // color: 'blue', // optional
-                // href: 'https://google.com' // optional
-            })
 
-            nano.goal({ 
-                element: '.goal3', // required, all with class .premium
-                address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
-                amount: 2, // required
-                title: 'Personal Fund', // optional
-                color: 'red',
-                // radius: 0,
-                font: 24,
-                // endpoint: 'https://nanolooker.com/rpc' // optional
-            })
+            // Legacy API Examples
+
+            // nano.goal({ 
+            //     element: '.goal', // required, all with class .premium
+            //     address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
+            //     amount: 100, // required
+            //     title: 'Bird Sanctuary', // optional
+            //     // color: 'blue', // optional
+            //     // href: 'https://google.com' // optional
+            // })
+
+            // nano.goal({ 
+            //     theme: 'custom',
+            //     custom: `<h2>Balance: {{balance}} NANO</h2>`,
+            //     element: '.goal2', // required, all with class .premium
+            //     address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
+            //     amount: 100, // required
+            //     title: 'Bird Sanctuary', // optional
+            //     // color: 'blue', // optional
+            //     // href: 'https://google.com' // optional
+            // })
+
+            // nano.goal({ 
+            //     element: '.goal3', // required, all with class .premium
+            //     address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
+            //     amount: 2, // required
+            //     title: 'Personal Fund', // optional
+            //     color: 'red',
+            //     // radius: 0,
+            //     font: 24,
+            //     // endpoint: 'https://nanolooker.com/rpc' // optional
+            // })
 
         </script>
     </body>

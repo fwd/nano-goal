@@ -28,44 +28,27 @@
 
 **USAGE:**
 ```html
+<div class="goal" data-title="Bird Sanctuary" data-color="#e74c3c" data-type="bar" data-address="@faucet" data-amount="100"></div>
+```
+
+```html
 <script>
+
     nano.goal({ 
-        element: '.goal', // required, all elem with class .goal
-        address: 'YOUR_ADDRESS', // required
-        amount: 100, // required
-        title: 'Bird Sanctuary', // optional
-        // color: 'blue', // optional
-        // href: 'https://google.com' // optional
-        // endpoint: 'https://rpc.nano.to' // optional
-        // color: 'red',
-        // radius: 0,
-        // font: 24,
+        element: '.goal', // required, all with class .premium
     })
-</script>
-```
 
-**BAR-UI:**
-```html
-<script>
-nano.goal({ 
-    element: '.goal', // required, all with class .premium
-    theme: 'bar-only',
-    address: 'YOUR_ADDRESS', // required
-    amount: 100, // required
-})
-</script>
-```
+    // Legacy API Examples
 
-**CUSTOM:**
-```html
-<script>
-nano.goal({ 
-    element: '.goal', // required, all with class .premium
-    theme: 'custom',
-    custom: `<h2>Balance: {{balance}} NANO</h2>`,
-    address: 'YOUR_ADDRESS', // required
-    amount: 100, // required
-})
+    // nano.goal({ 
+    //     element: '.goal', // required, all with class .premium
+    //     address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
+    //     amount: 100, // required
+    //     title: 'Bird Sanctuary', // optional
+    //     // color: 'blue', // optional
+    //     // href: 'https://google.com' // optional
+    // })
+
 </script>
 ```
 
