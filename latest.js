@@ -49,7 +49,6 @@
         	var bulk = []
 
 			for (let i = 0; i < all.length; i++) {
-				// var el = 
 	        	var temp = {}
 				if (all[i].getAttribute('data-address')) {
 					temp.address = (all[i].getAttribute('data-address') || all[i].getAttribute('data-username')) 
@@ -59,7 +58,7 @@
 				if (!temp.address) return alert('Error: No address configured.')
 				if (all[i].getAttribute('data-amount')) temp.amount = (all[i].getAttribute('data-amount') || all[i].getAttribute('data-goal')) 
 				if (all[i].getAttribute('data-title')) temp.title = all[i].getAttribute('data-title') 
-				if (all[i].getAttribute('data-theme')) temp.theme = all[i].getAttribute('data-type') 
+				if (all[i].getAttribute('data-type')) temp.theme = all[i].getAttribute('data-type') 
 				if (all[i].getAttribute('data-color')) temp.color = all[i].getAttribute('data-color') 
 				temp.el = all[i]
 				bulk.push(temp)
@@ -77,7 +76,7 @@
 		        	if (el.amount) config.amount = el.amount
 		        	if (el.title) config.title = el.title
 		        	if (el.color) config.color = el.color
-		        	if (el.theme) config.theme = el.theme
+		        	if (el.theme) el.theme = el.theme
 
 		        	// Oy vey
 		        	var _balance = balance.balances[el.address]
@@ -86,7 +85,7 @@
 						percent = Math.floor(percent)
 
 
-		        	if (config.theme === 'bar' || config.theme === 'bar-only') {
+		        	if (el.theme === 'bar' || el.theme === 'bar-only') {
 				        var template = `
 <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + ':' + config.title) }" target="_blank">
 <div id="glass">
@@ -96,7 +95,7 @@
     </div>
 </div></a>`
 
-		        	} else if (config.theme === 'custom') {
+		        	} else if (el.theme === 'custom') {
 		        	
 		        		var template = config.custom
 			        		.replace('{{ amount }}', config.amount).replace('{{amount}}', config.amount)
