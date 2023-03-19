@@ -73,6 +73,7 @@
 
 		        for (var el of bulk) {
 
+		        	if (el.address) config.address = el.address
 		        	if (el.amount) config.amount = el.amount
 		        	if (el.title) config.title = el.title
 		        	if (el.color) config.color = el.color
@@ -87,7 +88,7 @@
 
 		        	if (el.theme === 'bar' || el.theme === 'bar-only') {
 				        var template = `
-<a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + ':' + config.title) }" target="_blank">
+<a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + (config.title ? ':' + config.title : '') ) }" target="_blank">
 <div id="glass">
     <div id="contribution" style="left: 0%; width: ${percent}%; background-color: ${config.color || '#089dff'}">
     </div>
@@ -107,7 +108,7 @@
 		        	} else {
 
 				        var template = `<div id="goal-meter">
-	    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + ':' + config.title) }" target="_blank">
+	    <a style="text-decoration: none; color: inherit" href="${ config.href ? config.href : ('https://nano.to/' + config.address + '?goal=' + config.amount + (config.title ? ':' + config.title : '') ) }" target="_blank">
 		<div id="funding-wrap" style="font-size: ${config.font ? config.font + 'px' : '18px'}; border-color: ${config.color || '#089dff'}; padding: ${config.radius || config.radius === 0 ? '0 5px' : '20px'}; border-radius: ${config.radius || config.radius === 0 ? config.radius + 'px' : '10px'}; border-width: ${config.radius || config.radius === 0 ? '0px' : '8px'};">
 		    <div class="flex-item">
 		        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
@@ -131,7 +132,7 @@
 		        <div class="goal-stat">
 		            <span class="goal-number">
 		                <span style="font-size: 80%">Ӿ</span> ${ Number(_balance.balance_nano).toFixed(2) }
-		                <b>Raised</b>
+		                <b>${config.strings && config.strings.raised ? config.strings.raised : 'Raised'}</b>
 		            </span>
 		        </div>
 		    </div>
