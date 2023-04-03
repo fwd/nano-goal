@@ -63,11 +63,7 @@ Special strings accepted in ```custom```:
 
 ### License
 
-**Limited Commercial:**
-
-- ✅ Personal & Open Source
-- ✅ Commercial use where NanoGoal.js is **NOT** the end-product.
-- ❌ Commercial use where NanoGoal.js **IS** the end-product.
+MIT
 
 Contact [@nano2dev](mailto:support@nano.to) for licensing questions.
 
