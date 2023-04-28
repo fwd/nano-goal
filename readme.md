@@ -14,6 +14,11 @@
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
+<a align="center" target="_blank" href="https://simpleswap.io/?ref=ecc1985b556a"><img style="object-fit: contain;
+    max-width: 100%;" src="https://files.simpleswap.io/banners/970x90_EN_fast-and-secure.png" width="970" /></a>
+
+![line](https://github.com/fwd/n2/raw/master/.github/line.png)
+
 ### Install
 
 **Local:**
