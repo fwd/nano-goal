@@ -36,26 +36,8 @@
         element: '.goal', // required, all with class .premium
     })
 
-    // Legacy API Examples
-
-    // nano.goal({ 
-    //     element: '.goal', // required, all with class .premium
-    //     address: 'nano_1faucet7b6xjyha7m13objpn5ubkquzd6ska8kwopzf1ecbfmn35d1zey3ys', // required
-    //     amount: 100, // required
-    //     title: 'Bird Sanctuary', // optional
-    //     // color: 'blue', // optional
-    //     // href: 'https://google.com' // optional
-    // })
-
 </script>
 ```
-
-Special strings accepted in ```custom```:
-
-- {{ amount }}
-- {{ color }}
-- {{ percent }}
-- {{ balance }}
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
