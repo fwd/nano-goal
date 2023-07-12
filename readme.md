@@ -2,7 +2,7 @@
 
 <h1 align="center">NanoGoal.js</h1>
 
-<h3 align="center">Non-custodial, Crypto Funding Browser Plugin.</h3>
+<h3 align="center">Non-custodial, Crypto Funding Meter</h3>
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
@@ -16,7 +16,7 @@
 
 **Local:**
 ```html
-<script src="/latest.js"></script>
+<script src="/goal.js"></script>
 ```
 
 **CDN:**
@@ -32,19 +32,17 @@
 ```html
 <script>
 
-    nano.goal({ 
-        element: '.goal', // required, all with class .premium
-    })
+    nano.goal({ element: '.goal' })
 
 </script>
 ```
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
-### Sponsor (SimpleSwap)
+## Sponsor (DigitalOcean)
 
-<a align="center" target="_blank" href="https://simpleswap.io/?ref=ecc1985b556a"><img style="object-fit: contain;
-    max-width: 100%;" src="https://github.com/fwd/fwd/raw/master/ads/simpleswap.png" width="970" /></a>
+<a align="center" target="_blank" href="https://m.do.co/c/f139acf4ddcb"><img style="object-fit: contain;
+    max-width: 100%;" src="https://github.com/fwd/fwd/raw/master/ads/digitalocean_new.png" width="970" /></a>
 
 ![line](https://github.com/fwd/n2/raw/master/.github/line.png)
 
