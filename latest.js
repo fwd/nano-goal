@@ -82,9 +82,10 @@
 		        	// Oy vey
 		        	var _balance = balance.balances[el.address]
 
+		        	_balance.balance_nano = Number(_balance.receivable_nano) ? Number(_balance.balance_nano) + Number(_balance.receivable_nano) : _balance.balance_nano
+
 					var percent = (100 * Number(_balance.balance_nano)) / Number(config.amount) > 100 ? 100 : (100 * Number(_balance.balance_nano)) / Number(config.amount)
 						percent = Math.floor(percent)
-
 
 		        	if (el.theme === 'bar' || el.theme === 'bar-only') {
 				        var template = `
