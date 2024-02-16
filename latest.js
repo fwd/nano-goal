@@ -1,9 +1,10 @@
-// NanoGoal
+// NanoGoal 1.0.2
 // https://github.com/fwd/nano-goal
-// Follow me on Twitter @nano2dev
-;(async () => {
+// (c) Nano.to <support@nano.to>
+// Released under MIT License
+;(() => {
 
-	if (window.nano === undefined) window.nano = { debug: false }
+	if (window.nano === undefined) window.nano = { version: '1.0.2' }
 
 	var rpc = {
 
@@ -34,7 +35,6 @@
 
 		style.type = 'text/css';
 		if (style.styleSheet){
-		  // This is required for IE8 and below.
 		  style.styleSheet.cssText = css;
 		} else {
 		  style.appendChild(document.createTextNode(css));
@@ -62,6 +62,10 @@
 				if (all[i].getAttribute('data-color')) temp.color = all[i].getAttribute('data-color') 
 				temp.el = all[i]
 				bulk.push(temp)
+			}
+
+			function kFormatter(num) {
+			    return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'K' : Math.sign(num)*Math.abs(num)
 			}
 
 			rpc.post(config.endpoint ? config.endpoint : rpc.endpoint, { 
@@ -114,7 +118,7 @@
 		    <div class="flex-item">
 		        <div class="goal-stat">${config.title || 'Funding Goal'}</div>
 		        <div class="goal-stat">
-		            <span style="font-size: 80%">Ӿ</span> ${config.amount}
+		            <span style="font-size: 80%; margin-right: -3px">Ӿ</span> ${kFormatter(config.amount)}
 		        </div>
 		    </div>
 		    <div id="glass">
@@ -132,7 +136,7 @@
 		        </div>
 		        <div class="goal-stat">
 		            <span class="goal-number">
-		                <span style="font-size: 80%">Ӿ</span> ${ Number(_balance.balance_nano).toFixed(2) }
+		                <span style="font-size: 80%; margin-right: -1px">Ӿ</span> ${ kFormatter(Number(_balance.balance_nano).toFixed(2)) }
 		                <b>${config.strings && config.strings.raised ? config.strings.raised : 'Raised'}</b>
 		            </span>
 		        </div>
